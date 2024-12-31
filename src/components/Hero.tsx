@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import { FileText } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Hero = () => {
   return (
@@ -30,13 +32,37 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
+            className="flex justify-center space-x-6"
           >
-            <a 
-              href="#contact" 
-              className="bg-secondary text-primary px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors"
-            >
-              Get in Touch
-            </a>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a 
+                    href="#contact" 
+                    className="bg-secondary text-primary px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors"
+                  >
+                    Get in Touch
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Let's work together!</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button 
+                    className="bg-accent text-secondary px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-colors flex items-center space-x-2"
+                  >
+                    <FileText className="w-5 h-5" />
+                    <span>Download CV</span>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Download my resume</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </motion.div>
         </motion.div>
       </div>
