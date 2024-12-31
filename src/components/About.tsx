@@ -10,12 +10,22 @@ const About = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="min-h-screen py-20 px-4 md:px-8 relative overflow-hidden"
+      id="about"
     >
       {/* Animated background blobs */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
+
+      <motion.h2
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.1 }}
+        className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent"
+      >
+        About Me
+      </motion.h2>
 
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -31,7 +41,7 @@ const About = () => {
           className="relative"
         >
           {/* Blob container with gradient border */}
-          <div className="relative w-[300px] h-[300px] mx-auto">
+          <div className="relative w-[400px] h-[400px] mx-auto">
             {/* Animated blob background */}
             <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 to-accent/50 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-[blob_8s_ease-in-out_infinite] blur-xl opacity-70" />
             
@@ -41,7 +51,7 @@ const About = () => {
                 <img 
                   src="/lovable-uploads/b285457c-f25d-4005-9264-e4a1e1b3bc7c.png"
                   alt="Profile" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover animate-pulse"
                 />
               </div>
             </div>
@@ -55,7 +65,7 @@ const About = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="glass-card p-8 border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
+            className="glass-card p-8 border border-gradient-to-r from-secondary/50 to-accent/50 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
           >
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent">Who I Am</h2>
             <p className="text-gray-300 leading-relaxed">
@@ -69,7 +79,7 @@ const About = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="glass-card p-8 border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
+            className="glass-card p-8 border border-gradient-to-r from-secondary/50 to-accent/50 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
           >
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent">My Approach</h2>
             <p className="text-gray-300 leading-relaxed">
@@ -83,7 +93,7 @@ const About = () => {
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="glass-card p-8 border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
+            className="glass-card p-8 border border-gradient-to-r from-secondary/50 to-accent/50 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg"
           >
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent">My Goals</h2>
             <p className="text-gray-300 leading-relaxed">
@@ -102,7 +112,7 @@ const About = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="bg-secondary text-primary px-6 py-3 rounded-full flex items-center space-x-2 hover:bg-opacity-90 transition-colors">
+                  <button className="bg-secondary text-primary px-6 py-3 rounded-full flex items-center space-x-2 hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                     <FileText className="w-5 h-5" />
                     <span>Download CV</span>
                   </button>

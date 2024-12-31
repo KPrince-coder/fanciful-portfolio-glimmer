@@ -33,15 +33,17 @@ body {
 }
 
 .cursor-dot {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
   background-color: #64FFDA;
+  box-shadow: 0 0 10px #64FFDA, 0 0 20px #64FFDA, 0 0 30px #64FFDA;
 }
 
 .cursor-outline {
-  width: 30px;
-  height: 30px;
-  border: 2px solid rgba(100, 255, 218, 0.5);
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(100, 255, 218, 0.8);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
 }
 
 .cursor-dot,
@@ -53,10 +55,12 @@ body {
   border-radius: 50%;
   z-index: 999;
   pointer-events: none;
+  transition: width 0.3s, height 0.3s, transform 0.1s;
 }
 
 .glass-card {
   @apply bg-card rounded-lg backdrop-blur-md border border-white/10;
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
 }
 
 .section-heading {
