@@ -5,6 +5,7 @@ import ParticleBackground from '../components/ParticleBackground';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Projects from '../components/Projects';
+import BlogSection from '../components/blog/BlogSection';
 import Skills from '../components/Skills';
 import Contact from '../components/Contact';
 
@@ -27,6 +28,7 @@ const Index = () => {
           <Hero />
           <About />
           <Projects />
+          <BlogSection />
           <Skills />
           <Contact />
         </div>
