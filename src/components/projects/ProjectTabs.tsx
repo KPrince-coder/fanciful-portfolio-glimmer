@@ -23,7 +23,7 @@ const ProjectTabs = ({ activeTab, onTabChange }: ProjectTabsProps) => {
         >
           {tab.charAt(0).toUpperCase() + tab.slice(1)}
         </button>
-      ))}
+      </)}
     </div>
   );
 };
