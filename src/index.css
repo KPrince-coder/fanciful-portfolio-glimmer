@@ -33,17 +33,19 @@ body {
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   background-color: #64FFDA;
-  box-shadow: 0 0 10px #64FFDA, 0 0 20px #64FFDA, 0 0 30px #64FFDA;
+  box-shadow: 0 0 15px #64FFDA, 0 0 30px #64FFDA, 0 0 45px #64FFDA;
+  opacity: 0.8;
 }
 
 .cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(100, 255, 218, 0.8);
-  box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(100, 255, 218, 0.8);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+  opacity: 0.8;
 }
 
 .cursor-dot,
@@ -56,6 +58,12 @@ body {
   z-index: 999;
   pointer-events: none;
   transition: width 0.3s, height 0.3s, transform 0.1s;
+}
+
+.cursor-outline.active {
+  width: 40px;
+  height: 40px;
+  opacity: 0.5;
 }
 
 .glass-card {
