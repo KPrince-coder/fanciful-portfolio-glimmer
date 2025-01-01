@@ -32,7 +32,59 @@ export type Message = {
   read: boolean;
 };
 
-const supabaseUrl = 'https://your-project-url.supabase.co';
+// Initialize Supabase client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!supabaseUrl || !supabaseKey) {
+  console.error('Missing Supabase URL or Anon Key. Make sure you have connected to Supabase properly.');
+}
+
+export const supabase = createClient(supabaseUrl || '', supabaseKey || '');
+
+// Table names for better maintainability
+export const TABLES = {
+  PROJECTS: 'projects',
+  BLOGS: 'blogs',
+  MESSAGES: 'messages',
+  SKILLS: 'skills',
+  GOALS: 'goals',
+  TIMELINE: 'timeline',
+  PROFILE: 'profile'
+} as const;
+
+// Utility functions for data fetching
+export async function fetchProjects(category?: 'web' | 'android' | 'data') {
+  let query = supabase
+    .from(TABLES.PROJECTS)
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (category) {
+    query = query.eq('category', category);
+  }
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return data as Project[];
+}
+
+export async function fetchBlogs() {
+  const { data, error } = await supabase
+    .from(TABLES.BLOGS)
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data as Blog[];
+}
+
+export async function fetchMessages() {
+  const { data, error } = await supabase
+    .from(TABLES.MESSAGES)
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data as Message[];
+}
