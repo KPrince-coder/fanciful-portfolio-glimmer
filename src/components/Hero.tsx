@@ -18,7 +18,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Hi, I'm <span className="text-secondary">Your Name</span>
+            Hi, I'm <span className="text-secondary">Prince Kyeremeh</span>
           </motion.h1>
           <motion.h2 
             className="text-2xl md:text-4xl text-gray-400 mb-8"
