@@ -9,6 +9,7 @@ import BlogSection from '../components/blog/BlogSection';
 import Skills from '../components/Skills';
 import Timeline from '../components/Timeline';
 import Contact from '../components/Contact';
+import { Footer } from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
@@ -33,6 +34,7 @@ const Index = () => {
           <BlogSection />
           <Skills />
           <Contact />
+          <Footer />
         </div>
       </div>
     </TooltipProvider>
