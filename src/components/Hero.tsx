@@ -1,8 +1,26 @@
 import { motion } from 'framer-motion';
 import { FileText } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
+  const [text, setText] = useState("");
+  const fullName = "Prince Kyeremeh";
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const intervalId = setInterval(() => {
+      if (currentIndex <= fullName.length) {
+        setText(fullName.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 150); // Adjust speed of typing here
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center justify-center relative">
       <div className="container mx-auto px-4">
@@ -18,7 +36,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Hi, I'm <span className="text-secondary">Prince Kyeremeh</span>
+            Hi, I'm <span className="text-secondary inline-block">{text}<span className="animate-pulse">|</span></span>
           </motion.h1>
           <motion.h2 
             className="text-2xl md:text-4xl text-gray-400 mb-8"
