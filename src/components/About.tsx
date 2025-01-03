@@ -34,18 +34,16 @@ const About = () => {
         className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center"
       >
         {/* Left Column - Image and Blob */}
+        {/* Left Column - Image */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="relative"
         >
-          {/* Blob container with gradient border */}
-          <div className="relative w-[500px] h-[500px] mx-auto">
-            {/* Animated blob background */}
+          <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] mx-auto">
             <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 to-accent/50 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-[blob_8s_ease-in-out_infinite] blur-xl opacity-70" />
             
-            {/* Image container with gradient border */}
             <div className="relative h-full w-full rounded-[60%_40%_30%_70%/60%_30%_70%_40%] overflow-hidden p-1 bg-gradient-to-r from-secondary to-accent animate-[blob_8s_ease-in-out_infinite]">
               <div className="absolute inset-[2px] rounded-[60%_40%_30%_70%/60%_30%_70%_40%] overflow-hidden bg-primary">
                 <img 
@@ -85,7 +83,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          {/* My Goals Card */}
+          {/* My Goals Card
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -116,6 +114,32 @@ const About = () => {
               <div className="flex items-center space-x-4">
                 <div className="w-2 h-2 bg-secondary rounded-full" />
                 <p className="text-gray-300">Contribute to open-source projects and the developer community</p>
+              </div>
+            </div>
+          </motion.div> */}
+
+           {/* My Goals Card */}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="glass-card p-8"
+          >
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-secondary to-white bg-clip-text text-transparent">
+              My Goals
+            </h2>
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-xl font-semibold text-secondary">Technical Excellence</h3>
+                <p className="text-gray-300">Continuously improving my skills in full-stack development and staying current with emerging technologies.</p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-semibold text-secondary">Innovation</h3>
+                <p className="text-gray-300">Creating impactful solutions that solve real-world problems and enhance user experiences.</p>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-xl font-semibold text-secondary">Collaboration</h3>
+                <p className="text-gray-300">Working effectively with teams to build scalable and maintainable applications.</p>
               </div>
             </div>
           </motion.div>
@@ -165,6 +189,18 @@ const About = () => {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
+          </motion.div>
+
+           {/* Quote */}
+           <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="glass-card p-8 text-center"
+          >
+            <p className="text-xl italic text-gray-300">
+              "The only way to do great work is to love what you do."
+            </p>
           </motion.div>
         </div>
       </motion.div>
