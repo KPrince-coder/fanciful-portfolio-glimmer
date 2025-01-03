@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CustomCursor from '../components/CustomCursor';
 import ParticleBackground from '../components/ParticleBackground';
+import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Projects from '../components/Projects';
@@ -27,6 +28,7 @@ const Index = () => {
           <ParticleBackground />
         </div>
         <div className="relative z-10">
+          <Header />
           <Hero />
           <About />
           <Timeline />
