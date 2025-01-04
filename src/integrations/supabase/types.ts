@@ -9,6 +9,33 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_super_admin: boolean | null
+          notification_preferences: Json | null
+          secret_token: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          is_super_admin?: boolean | null
+          notification_preferences?: Json | null
+          secret_token?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_super_admin?: boolean | null
+          notification_preferences?: Json | null
+          secret_token?: string | null
+        }
+        Relationships: []
+      }
       blogs: {
         Row: {
           author: string
@@ -174,6 +201,27 @@ export type Database = {
           title?: string
           updated_at?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          notification_email: string | null
+          site_metadata: Json | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          notification_email?: string | null
+          site_metadata?: Json | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          notification_email?: string | null
+          site_metadata?: Json | null
+          updated_at?: string
         }
         Relationships: []
       }
