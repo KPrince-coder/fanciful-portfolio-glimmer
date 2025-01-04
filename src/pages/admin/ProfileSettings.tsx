@@ -17,6 +17,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
+  id: z.string().optional(),
   full_name: z.string().min(2, "Name must be at least 2 characters"),
   bio: z.string().min(10, "Bio must be at least 10 characters"),
   avatar_url: z.string().url().optional(),
@@ -63,7 +64,7 @@ export default function ProfileSettings() {
       const { error } = await supabase
         .from(TABLES.PROFILE)
         .update(values)
-        .eq("id", profile?.id);
+        .eq("id", profile?.id || "");
 
       if (error) throw error;
       return values;
@@ -85,7 +86,9 @@ export default function ProfileSettings() {
   });
 
   function onSubmit(values: Profile) {
-    mutation.mutate(values);
+    if (profile?.id) {
+      mutation.mutate({ ...values, id: profile.id });
+    }
   }
 
   if (isLoading) {
