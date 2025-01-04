@@ -9,166 +9,222 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      analytics: {
+      blogs: {
         Row: {
-          created_at: string
-          event_data: Json | null
-          event_type: string
-          goal_id: string | null
+          author: string
+          content: string
+          created_at: string | null
+          excerpt: string
           id: string
-          user_id: string
+          image_url: string
+          title: string
+          updated_at: string | null
+          user_id: string | null
         }
         Insert: {
-          created_at?: string
-          event_data?: Json | null
-          event_type: string
-          goal_id?: string | null
+          author: string
+          content: string
+          created_at?: string | null
+          excerpt: string
           id?: string
-          user_id: string
+          image_url: string
+          title: string
+          updated_at?: string | null
+          user_id?: string | null
         }
         Update: {
-          created_at?: string
-          event_data?: Json | null
-          event_type?: string
-          goal_id?: string | null
+          author?: string
+          content?: string
+          created_at?: string | null
+          excerpt?: string
           id?: string
-          user_id?: string
+          image_url?: string
+          title?: string
+          updated_at?: string | null
+          user_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "analytics_goal_id_fkey"
-            columns: ["goal_id"]
-            isOneToOne: false
-            referencedRelation: "goals"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "analytics_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       goals: {
         Row: {
-          category: string | null
           created_at: string
-          description: string | null
-          end_date: string | null
+          description: string
           id: string
-          priority: Database["public"]["Enums"]["goal_priority"] | null
-          progress: number | null
-          start_date: string | null
-          status: Database["public"]["Enums"]["goal_status"] | null
+          status: string
           title: string
-          updated_at: string
-          user_id: string
         }
         Insert: {
-          category?: string | null
           created_at?: string
-          description?: string | null
-          end_date?: string | null
+          description: string
           id?: string
-          priority?: Database["public"]["Enums"]["goal_priority"] | null
-          progress?: number | null
-          start_date?: string | null
-          status?: Database["public"]["Enums"]["goal_status"] | null
+          status: string
           title: string
-          updated_at?: string
-          user_id: string
         }
         Update: {
-          category?: string | null
           created_at?: string
-          description?: string | null
-          end_date?: string | null
+          description?: string
           id?: string
-          priority?: Database["public"]["Enums"]["goal_priority"] | null
-          progress?: number | null
-          start_date?: string | null
-          status?: Database["public"]["Enums"]["goal_status"] | null
+          status?: string
           title?: string
-          updated_at?: string
-          user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "goals_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      milestones: {
+      messages: {
         Row: {
-          completed: boolean | null
           created_at: string
-          description: string | null
-          due_date: string | null
-          goal_id: string
+          email: string
           id: string
-          title: string
-          updated_at: string
+          message: string
+          name: string
+          read: boolean | null
         }
         Insert: {
-          completed?: boolean | null
           created_at?: string
-          description?: string | null
-          due_date?: string | null
-          goal_id: string
+          email: string
           id?: string
-          title: string
-          updated_at?: string
+          message: string
+          name: string
+          read?: boolean | null
         }
         Update: {
-          completed?: boolean | null
           created_at?: string
-          description?: string | null
-          due_date?: string | null
-          goal_id?: string
+          email?: string
           id?: string
-          title?: string
-          updated_at?: string
+          message?: string
+          name?: string
+          read?: boolean | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "milestones_goal_id_fkey"
-            columns: ["goal_id"]
-            isOneToOne: false
-            referencedRelation: "goals"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      profiles: {
+      profile: {
         Row: {
           avatar_url: string | null
+          bio: string
           created_at: string
-          full_name: string | null
+          cv_url: string | null
+          email: string
+          full_name: string
+          github_url: string | null
           id: string
-          updated_at: string
-          username: string | null
+          linkedin_url: string | null
         }
         Insert: {
           avatar_url?: string | null
+          bio: string
           created_at?: string
-          full_name?: string | null
-          id: string
-          updated_at?: string
-          username?: string | null
+          cv_url?: string | null
+          email: string
+          full_name: string
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
         }
         Update: {
           avatar_url?: string | null
+          bio?: string
           created_at?: string
-          full_name?: string | null
+          cv_url?: string | null
+          email?: string
+          full_name?: string
+          github_url?: string | null
           id?: string
-          updated_at?: string
-          username?: string | null
+          linkedin_url?: string | null
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          category: string
+          created_at: string | null
+          demo_url: string | null
+          description: string
+          github_url: string | null
+          id: string
+          image_url: string
+          long_description: string | null
+          tech_stack: string[]
+          title: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          demo_url?: string | null
+          description: string
+          github_url?: string | null
+          id?: string
+          image_url: string
+          long_description?: string | null
+          tech_stack?: string[]
+          title: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          demo_url?: string | null
+          description?: string
+          github_url?: string | null
+          id?: string
+          image_url?: string
+          long_description?: string | null
+          tech_stack?: string[]
+          title?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      skills: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          name: string
+          proficiency: number
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          name: string
+          proficiency: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          name?: string
+          proficiency?: number
+        }
+        Relationships: []
+      }
+      timeline: {
+        Row: {
+          created_at: string
+          date: string
+          description: string
+          id: string
+          title: string
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          description: string
+          id?: string
+          title: string
+          type: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          description?: string
+          id?: string
+          title?: string
+          type?: string
         }
         Relationships: []
       }
@@ -180,8 +236,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      goal_priority: "low" | "medium" | "high"
-      goal_status: "not_started" | "in_progress" | "completed" | "archived"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
