@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CustomCursor from '../components/CustomCursor';
 import ParticleBackground from '../components/ParticleBackground';
@@ -12,30 +12,34 @@ import Timeline from '../components/Timeline';
 import Contact from '../components/Contact';
 import { Footer } from '@/components/Footer';
 
-const Index = () => {
+const Index: React.FC = () => {
   React.useEffect(() => {
-    document.body.style.cursor = 'none';
-    return () => {
-      document.body.style.cursor = 'auto';
-    };
+    if (typeof document !== 'undefined') {
+      document.body.style.cursor = 'none';
+      return () => {
+        document.body.style.cursor = 'auto';
+      };
+    }
   }, []);
 
   return (
     <TooltipProvider>
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen bg-primary">
         <CustomCursor />
         <div className="fixed inset-0 z-0">
           <ParticleBackground />
         </div>
         <div className="relative z-10">
           <Header />
-          <Hero />
-          <About />
-          <Timeline />
-          <Projects />
-          <BlogSection />
-          <Skills />
-          <Contact />
+          <main>
+            <Hero />
+            <About />
+            <Timeline />
+            <Projects />
+            <BlogSection />
+            <Skills />
+            <Contact />
+          </main>
           <Footer />
         </div>
       </div>
