@@ -9,6 +9,7 @@ import ProfileSettings from "./pages/admin/ProfileSettings";
 import AdminLogin from "./components/admin/auth/AdminLogin";
 import AdminSignup from "./components/admin/auth/AdminSignup";
 import AdminDashboard from "./pages/admin/Dashboard";
+import ProjectsPage from "./pages/admin/projects/ProjectsPage";
 import ProtectedRoute from "./components/admin/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/admin/projects" 
+              element={
+                <ProtectedRoute>
+                  <ProjectsPage />
                 </ProtectedRoute>
               } 
             />
