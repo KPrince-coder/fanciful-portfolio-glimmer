@@ -21,6 +21,9 @@ export type Blog = {
   author: string;
   image_url: string;
   created_at: string;
+  status: 'draft' | 'published';
+  tags?: string[];
+  published_at?: string;
 };
 
 export type Message = {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { TooltipProvider } from "@/components/ui/tooltip";
 import CustomCursor from '../components/CustomCursor';
 import ParticleBackground from '../components/ParticleBackground';
@@ -13,7 +13,7 @@ import Contact from '../components/Contact';
 import { Footer } from '@/components/Footer';
 
 const Index = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.style.cursor = 'none';
     return () => {
       document.body.style.cursor = 'auto';
