@@ -1,134 +1,51 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import {
-  Settings,
-  LayoutDashboard,
-  FileText,
-  Briefcase,
-  BookText,
-  Clock,
-  MessageSquare,
-  LogOut,
-  User,
-  BarChart,
-} from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import { useToast } from "@/components/ui/use-toast";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { LayoutDashboard, FolderKanban, FileText } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const menuItems = [
-  {
-    title: "Dashboard",
-    path: "/admin/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Profile",
-    path: "/admin/profile",
-    icon: User,
-  },
-  {
-    title: "Projects",
-    path: "/admin/projects",
-    icon: Briefcase,
-  },
-  {
-    title: "Blog Posts",
-    path: "/admin/blogs",
-    icon: BookText,
-  },
-  {
-    title: "Timeline",
-    path: "/admin/timeline",
-    icon: Clock,
-  },
-  {
-    title: "Messages",
-    path: "/admin/messages",
-    icon: MessageSquare,
-  },
-  {
-    title: "Skills",
-    path: "/admin/skills",
-    icon: BarChart,
-  },
-  {
-    title: "Settings",
-    path: "/admin/settings",
-    icon: Settings,
-  },
-];
-
-export default function AdminSidebar() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { toast } = useToast();
-
-  const handleSignOut = async () => {
-    try {
-      await supabase.auth.signOut();
-      navigate("/admin/login");
-      toast({
-        title: "Signed out successfully",
-      });
-    } catch (error: any) {
-      toast({
-        title: "Error signing out",
-        description: error.message,
-        variant: "destructive",
-      });
-    }
-  };
+const AdminSidebar = () => {
+  const links = [
+    {
+      to: '/admin',
+      icon: LayoutDashboard,
+      label: 'Dashboard',
+    },
+    {
+      to: '/admin/projects',
+      icon: FolderKanban,
+      label: 'Projects',
+    },
+    {
+      to: '/admin/blogs',
+      icon: FileText,
+      label: 'Blogs',
+    },
+  ];
 
   return (
-    <Sidebar>
-      <SidebarContent>
-        <div className="p-4">
-          <h1 className="text-2xl font-bold text-secondary">Admin Panel</h1>
-        </div>
-        <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.path}>
-                  <SidebarMenuButton
-                    asChild
-                    className={location.pathname === item.path ? "bg-accent" : ""}
-                  >
-                    <button
-                      onClick={() => navigate(item.path)}
-                      className="w-full flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent transition-colors"
-                    >
-                      <item.icon className="w-5 h-5" />
-                      <span>{item.title}</span>
-                    </button>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <button
-                    onClick={handleSignOut}
-                    className="w-full flex items-center gap-2 px-4 py-2 rounded-md hover:bg-accent transition-colors text-red-500"
-                  >
-                    <LogOut className="w-5 h-5" />
-                    <span>Sign Out</span>
-                  </button>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <aside className="hidden lg:flex h-screen w-64 flex-col fixed left-0 top-0 border-r bg-background">
+      <div className="flex h-14 items-center border-b px-6 font-semibold">
+        Admin Dashboard
+      </div>
+      <nav className="flex-1 space-y-1 p-4">
+        {links.map(({ to, icon: Icon, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-2 rounded-lg px-3 py-2 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50',
+                isActive && 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-50'
+              )
+            }
+          >
+            <Icon className="h-5 w-5" />
+            {label}
+          </NavLink>
+        ))}
+      </nav>
+    </aside>
   );
-}
+};
+
+export default AdminSidebar;

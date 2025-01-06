@@ -44,6 +44,9 @@ export type Database = {
           excerpt: string
           id: string
           image_url: string
+          published_at: string | null
+          status: string | null
+          tags: string[] | null
           title: string
           updated_at: string | null
           user_id: string | null
@@ -55,6 +58,9 @@ export type Database = {
           excerpt: string
           id?: string
           image_url: string
+          published_at?: string | null
+          status?: string | null
+          tags?: string[] | null
           title: string
           updated_at?: string | null
           user_id?: string | null
@@ -66,6 +72,9 @@ export type Database = {
           excerpt?: string
           id?: string
           image_url?: string
+          published_at?: string | null
+          status?: string | null
+          tags?: string[] | null
           title?: string
           updated_at?: string | null
           user_id?: string | null
