@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -9,7 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 import {
   Settings,
   LayoutDashboard,
@@ -19,40 +18,52 @@ import {
   Clock,
   MessageSquare,
   LogOut,
-} from 'lucide-react';
-import { supabase } from '@/lib/supabase';
-import { useToast } from '@/components/ui/use-toast';
+  User,
+  BarChart,
+} from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { useToast } from "@/components/ui/use-toast";
 
 const menuItems = [
   {
-    title: 'Dashboard',
-    path: '/admin/dashboard',
+    title: "Dashboard",
+    path: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
-    title: 'Profile',
-    path: '/admin/profile',
-    icon: Settings,
+    title: "Profile",
+    path: "/admin/profile",
+    icon: User,
   },
   {
-    title: 'Projects',
-    path: '/admin/projects',
+    title: "Projects",
+    path: "/admin/projects",
     icon: Briefcase,
   },
   {
-    title: 'Blog Posts',
-    path: '/admin/blogs',
+    title: "Blog Posts",
+    path: "/admin/blogs",
     icon: BookText,
   },
   {
-    title: 'Timeline',
-    path: '/admin/timeline',
+    title: "Timeline",
+    path: "/admin/timeline",
     icon: Clock,
   },
   {
-    title: 'Messages',
-    path: '/admin/messages',
+    title: "Messages",
+    path: "/admin/messages",
     icon: MessageSquare,
+  },
+  {
+    title: "Skills",
+    path: "/admin/skills",
+    icon: BarChart,
+  },
+  {
+    title: "Settings",
+    path: "/admin/settings",
+    icon: Settings,
   },
 ];
 
@@ -64,15 +75,15 @@ export default function AdminSidebar() {
   const handleSignOut = async () => {
     try {
       await supabase.auth.signOut();
-      navigate('/admin/login');
+      navigate("/admin/login");
       toast({
-        title: 'Signed out successfully',
+        title: "Signed out successfully",
       });
     } catch (error: any) {
       toast({
-        title: 'Error signing out',
+        title: "Error signing out",
         description: error.message,
-        variant: 'destructive',
+        variant: "destructive",
       });
     }
   };
@@ -91,7 +102,7 @@ export default function AdminSidebar() {
                 <SidebarMenuItem key={item.path}>
                   <SidebarMenuButton
                     asChild
-                    className={location.pathname === item.path ? 'bg-accent' : ''}
+                    className={location.pathname === item.path ? "bg-accent" : ""}
                   >
                     <button
                       onClick={() => navigate(item.path)}
