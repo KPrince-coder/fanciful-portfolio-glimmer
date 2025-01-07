@@ -23,15 +23,15 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <TooltipProvider>
-      <div className="relative min-h-screen bg-primary">
-        <CustomCursor />
-        <div className="fixed inset-0 z-0">
-          <ParticleBackground />
-        </div>
-        <div className="relative z-10">
+    <>
+      <CustomCursor />
+      <div className="fixed inset-0 z-0">
+        <ParticleBackground />
+      </div>
+      <div className="relative z-10 min-h-screen bg-primary">
+        <TooltipProvider>
           <Header />
-          <main>
+          <main className="container mx-auto">
             <Hero />
             <About />
             <Timeline />
@@ -41,9 +41,9 @@ const Index: React.FC = () => {
             <Contact />
           </main>
           <Footer />
-        </div>
+        </TooltipProvider>
       </div>
-    </TooltipProvider>
+    </>
   );
 };
 
