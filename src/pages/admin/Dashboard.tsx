@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Loader2, Users, BookText, Briefcase, MessageSquare } from "lucide-react";
+import { Loader2, BookText, Briefcase, MessageSquare } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { StatsCard } from "@/components/admin/dashboard/StatsCard";
 import { RecentActivity } from "@/components/admin/dashboard/RecentActivity";
@@ -9,24 +9,33 @@ export default function AdminDashboard() {
   const { data: stats, isLoading } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
-      const [projects, blogs, messages] = await Promise.all([
-        supabase.from("projects").select("id", { count: "exact" }),
-        supabase.from("blogs").select("id", { count: "exact" }),
-        supabase.from("messages").select("id", { count: "exact" }),
-      ]);
+      try {
+        const [projects, blogs, messages] = await Promise.all([
+          supabase.from("projects").select("id", { count: "exact" }),
+          supabase.from("blogs").select("id", { count: "exact" }),
+          supabase.from("messages").select("id", { count: "exact" }),
+        ]);
 
-      return {
-        projects: projects.count || 0,
-        blogs: blogs.count || 0,
-        messages: messages.count || 0,
-      };
+        return {
+          projects: projects.count || 0,
+          blogs: blogs.count || 0,
+          messages: messages.count || 0,
+        };
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+        return {
+          projects: 0,
+          blogs: 0,
+          messages: 0,
+        };
+      }
     },
   });
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <Loader2 className="w-8 h-8 animate-spin text-secondary" />
+      <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
   }
@@ -50,9 +59,9 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
