@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/lib/supabase";
+import { Mail, Lock } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -71,11 +72,14 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary p-4">
-      <div className="w-full max-w-md space-y-8 bg-accent rounded-lg p-6">
-        <div>
-          <h2 className="text-2xl font-bold text-center text-secondary">
+      <div className="w-full max-w-md space-y-8 glass-card p-8">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold text-secondary">
             Admin Login
           </h2>
+          <p className="text-gray-400">
+            Please sign in to access the admin panel
+          </p>
         </div>
 
         <Form {...form}>
@@ -85,11 +89,19 @@ export default function AdminLogin() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-gray-300">Email</FormLabel>
                   <FormControl>
-                    <Input {...field} type="email" className="bg-card" />
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                      <Input 
+                        {...field} 
+                        type="email" 
+                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 focus:ring-0 focus:border-secondary transition-colors" 
+                        placeholder="Enter your email"
+                      />
+                    </div>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
@@ -99,17 +111,28 @@ export default function AdminLogin() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-gray-300">Password</FormLabel>
                   <FormControl>
-                    <Input {...field} type="password" className="bg-card" />
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                      <Input 
+                        {...field} 
+                        type="password" 
+                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 focus:ring-0 focus:border-secondary transition-colors" 
+                        placeholder="Enter your password"
+                      />
+                    </div>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-400" />
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full">
-              Login
+            <Button 
+              type="submit" 
+              className="w-full bg-secondary hover:bg-secondary/80 text-primary font-semibold h-12 transition-colors"
+            >
+              Sign In
             </Button>
           </form>
         </Form>
