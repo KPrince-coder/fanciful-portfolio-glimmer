@@ -58,7 +58,7 @@ export default function AdminLogin() {
           description: "Logged in successfully",
         });
         
-        navigate('/admin/dashboard');
+        navigate('/admin');
       }
     } catch (error: any) {
       toast({
@@ -113,16 +113,6 @@ export default function AdminLogin() {
             </Button>
           </form>
         </Form>
-
-        <div className="text-center">
-          <Button
-            variant="link"
-            className="text-secondary"
-            onClick={() => navigate('/admin/signup')}
-          >
-            Need an account? Sign up
-          </Button>
-        </div>
       </div>
     </div>
   );

@@ -6,12 +6,14 @@ import BlogsPage from './pages/admin/blogs/BlogsPage';
 import ProfileSettings from './pages/admin/ProfileSettings';
 import AdminLayout from './components/admin/layout/AdminLayout';
 import ProtectedRoute from './components/admin/auth/ProtectedRoute';
+import AdminLogin from './components/admin/auth/AdminLogin';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Index />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin"
           element={
