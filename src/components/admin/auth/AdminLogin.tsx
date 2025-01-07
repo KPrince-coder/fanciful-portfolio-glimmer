@@ -41,7 +41,13 @@ export default function AdminLogin() {
         password: values.password,
       });
 
-      if (signInError) throw signInError;
+      if (signInError) {
+        let errorMessage = "Invalid login credentials";
+        if (signInError.message.includes("Email not confirmed")) {
+          errorMessage = "Please verify your email address before signing in";
+        }
+        throw new Error(errorMessage);
+      }
 
       if (user) {
         const { data: adminData, error: adminError } = await supabase
@@ -91,12 +97,14 @@ export default function AdminLogin() {
                 <FormItem>
                   <FormLabel className="text-gray-300">Email</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    <div className="relative group">
+                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 transition-colors group-hover:text-secondary" />
                       <Input 
                         {...field} 
                         type="email" 
-                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 focus:ring-0 focus:border-secondary transition-colors" 
+                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 
+                          focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none
+                          hover:border-secondary hover:bg-accent/70 transition-all duration-300" 
                         placeholder="Enter your email"
                       />
                     </div>
@@ -113,12 +121,14 @@ export default function AdminLogin() {
                 <FormItem>
                   <FormLabel className="text-gray-300">Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                    <div className="relative group">
+                      <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 transition-colors group-hover:text-secondary" />
                       <Input 
                         {...field} 
                         type="password" 
-                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 focus:ring-0 focus:border-secondary transition-colors" 
+                        className="bg-accent/50 border-accent pl-10 h-12 text-white placeholder:text-gray-400 
+                          focus:ring-2 focus:ring-secondary focus:border-transparent focus:outline-none
+                          hover:border-secondary hover:bg-accent/70 transition-all duration-300" 
                         placeholder="Enter your password"
                       />
                     </div>
